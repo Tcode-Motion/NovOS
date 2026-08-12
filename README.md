@@ -2,6 +2,8 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:050509,30:0a0a1a,65:0d0d2b,100:00d4ff&height=220&section=header&text=🌌%20NovOS&fontSize=78&fontColor=00d4ff&animation=fadeIn&fontAlignY=40&desc=Professional%20Edition%20v1.3.0&descSize=18&descAlignY=60" />
 
+> **Status:** 🚧 *Frontend UI Simulation* — Interactive web desktop interface. Advanced system architecture and features are currently under concept development.
+
 </div>
 
 <div align="center">
@@ -63,16 +65,6 @@
 ## 📖 Table of Contents
 
 - [🌌 The Vision](#-the-vision)
-- [🏗️ System Architecture](#-system-architecture)
-  - [The Micro-Kernel Core](#the-micro-kernel-core)
-  - [Architecture Topology](#architecture-topology)
-  - [The Virtual File System (VFS)](#the-virtual-file-system-vfs)
-  - [Security & AppLoader Sandbox](#security--apploader-sandbox)
-- [🖥️ User Interface & Experience](#-user-interface--experience)
-  - [The Aether Design Language](#the-aether-design-language)
-  - [Spotlight Search](#spotlight-search)
-  - [Mission Control & Workspaces](#mission-control--workspaces)
-  - [Cinematic Window Management](#cinematic-window-management)
 - [📦 Application Ecosystem](#-application-ecosystem)
 - [📋 Full Application Registry (v1.3.0)](#-full-application-registry-v130)
 - [⌨️ Global Hotkeys & Shell Reference](#-global-hotkeys--shell-reference)
@@ -84,13 +76,8 @@
   - [Project Structure](#project-structure)
   - [API Reference (window.kernel)](#api-reference-windowkernel)
   - [Adding a New App](#adding-a-new-app)
-- [🛰️ Kernel Event Protocol](#-kernel-event-protocol)
-- [🎨 Aether Token System](#-aether-token-system)
 - [🚀 Roadmap & Future Vistas](#-roadmap--future-vistas)
 - [🕰️ Changelog](#-changelog)
-- [📋 Default VFS Manifest](#-default-vfs-manifest)
-- [⚙️ Kernel Configuration Examples](#-kernel-configuration-examples)
-- [🔍 System Log Examples](#-system-log-examples)
 - [❓ Troubleshooting & FAQ](#-troubleshooting--faq)
 - [📚 System Glossary](#-system-glossary)
 - [📑 Contribution Guidelines](#-contribution-guidelines)
@@ -100,72 +87,11 @@
 
 ## 🌌 The Vision
 
-**NovOS** is a cinematic, browser-based operating environment that redefines the relationship between the web and desktop computing. It is not merely a "skin" for a website — it is a fully integrated micro-kernel OS, complete with a POSIX-compliant virtual file system, security model, process lifecycle management, and a sophisticated event bus.
+**NovOS** is a cinematic, browser-based operating environment that redefines the relationship between the web and desktop computing. It is a **Web-Based OS Interface / Desktop UI Simulation**.
 
 Our mission is to provide a distraction-free, high-fidelity workspace where developers and creators can manage their digital lives without ever leaving the browser tab.
 
 > *"The future of computing is not on your disk, but in your mind. We are just building the interface."*
-
----
-
-## 🏗️ System Architecture
-
-NovOS is built on the principle of **Isolation & Orchestration** — every subsystem operates independently and communicates through a central event bus.
-
-### The Micro-Kernel Core
-
-The kernel operates as the central arbiter of the system, written in highly optimized vanilla JavaScript to ensure zero overhead.
-
-| Subsystem | Role |
-|:---|:---|
-| **Neural Event Bus** | Orchestrates 100+ system events, from file writes to battery state changes |
-| **VFS Manager** | Manages the link between in-memory file trees and IndexedDB persistence |
-| **Window Scheduler** | Controls focus, z-index, and rendering cycle of all active windows |
-| **HAL** | Interfaces with browser-level APIs (WebAudio, Battery API, WebGL) for a consistent app interface |
-
-### Architecture Topology
-
-```
-[ USER INTERFACE LAYER (Aether) ]
-      |
-      +-- Desktop Shell (Phase: Desktop)
-      +-- Authentication Shell (Phase: Login)
-      +-- Overlay Stack (Spotlight, Mission Control)
-      |
-[ STATE ORCHESTRATION LAYER ]
-      |
-      +-- User Store (Identity, Files, Credentials)
-      +-- OS Store (Windows, Processes, Hardware State)
-      |
-[ KERNEL LAYER (window.kernel) ]
-      |
-      +-- FS:   Virtual File System Controller
-      +-- PROC: Process & App Lifecycle Manager
-      +-- EVT:  Neural Event Bus System
-      +-- HAL:  Browser API Bridge
-      |
-[ PERSISTENCE LAYER ]
-      |
-      +-- POSIX Abstraction Interface
-      +-- IndexedDB Storage (novos-vfs-db)
-```
-
-### The Virtual File System (VFS)
-
-The VFS is a full POSIX-compliant implementation backed by **IndexedDB**.
-
-- **True Persistence** — Unlike `localStorage`, IndexedDB survives browser refreshes and supports large structured data.
-- **Path Resolution** — Supports absolute paths (`/etc/config`), relative paths (`../docs`), and home shortcuts (`~/Desktop`).
-- **Permissions** — Every node carries a 10-character permission string (e.g., `drwxr-xr-x`) with owner/group assignment.
-- **Integrity** — On every boot, the kernel runs a checksum pass across all mounted partitions.
-
-### Security & AppLoader Sandbox
-
-Applications are treated as signed system packages, not raw components.
-
-1. **Registry** — All apps must be defined in `APP_REGISTRY` with dimensions, category, and permission scope.
-2. **Verification** — During boot, cryptographic bundles in `/usr/apps/` are validated. Invalid signatures block the launch.
-3. **Sandboxing** — Installed apps run in strict isolation and must explicitly request hardware access (Camera, Mic, Network).
 
 ---
 
@@ -220,7 +146,7 @@ NovOS ships with a curated set of high-fidelity applications and a **Nexus App S
 <div align="center">
 
 ### 🖥️ Live Desktop View
-<img src="https://github.com/Tcode-Motion/NovOS/blob/master/NovOS_dextop_viwe.png" alt="NovOS Desktop View" width="800" />
+<img src="https://github.com/Tcode-Motion/NovOS/blob/master/novos-desktop-view.png" alt="NovOS Desktop View" width="800" />
 
 </div>
 ---
@@ -524,6 +450,8 @@ NovOS implements a multi-layer security model inspired by real UNIX systems.
 
 ### Default Credentials
 
+> **Note:** The following credentials are purely mock values for demo UI testing:
+
 | User | Password | Role |
 |:---|:---|:---|
 | `operator` | `admin` | Root / System Administrator |
@@ -549,14 +477,7 @@ NovOS implements a multi-layer security model inspired by real UNIX systems.
 ├── index.html              # Boot entry point
 ├── favicon.svg
 ├── icons.svg
-└── assets/
-    ├── /components
-    │   ├── /apps           # Individual application components
-    │   ├── /os             # Core UI (Desktop, Dock, Taskbar)
-    │   └── /overlays       # Global UI (Spotlight, Mission Control)
-    ├── /kernel             # FS, AppLoader, Kernel.js
-    ├── /store              # Global state (Zustand)
-    └── /styles             # CSS and Aether design tokens
+└── assets/                 # Frontend UI build assets (JS/CSS)
 ```
 
 ### API Reference (window.kernel)
@@ -628,25 +549,6 @@ myApp: {
 3. Add a launcher to the dock or desktop in `osStore.js`.
 4. Ensure the component responds to `Esc` for window close.
 5. Use `--glass-material` and `--accent-cyan` tokens for styling.
-
----
-
-## 🛰️ Kernel Event Protocol
-
-| Event Name | Trigger | Payload |
-|:---|:---|:---|
-| `kernel:booting` | Boot sequence starts | `null` |
-| `kernel:ready` | All subsystems online | `{ bootTime: number }` |
-| `fs:ready` | IndexedDB connection established | `null` |
-| `fs:write` | File written to VFS | `{ path: string, size: number }` |
-| `os:error` | Critical system error | `{ title: string, message: string }` |
-| `window:focus` | User focuses a window | `{ id: string, app: string }` |
-| `window:close` | Window is terminated | `{ id: string, pid: number }` |
-| `battery:change` | Device battery updates | `{ level: number, charging: boolean }` |
-| `network:change` | System goes online/offline | `{ online: boolean }` |
-| `auth:login` | User authenticates | `{ user: string, uid: number }` |
-| `auth:logout` | Session terminated | `{ user: string }` |
-| `auth:lock` | Screen locked | `null` |
 
 ---
 
@@ -749,114 +651,6 @@ All custom apps must use these CSS variables, defined globally on `:root`.
 
 ### v1.0.0
 - Initial Release: Core kernel and basic window manager
-
----
-
-## 📋 Default VFS Manifest
-
-The base NovOS image ships with the following file nodes pre-populated:
-
-```
-/bin/sh              /bin/ls              /bin/cat
-/bin/mkdir           /bin/rm              /bin/cp
-/bin/mv              /bin/grep            /bin/ps
-/bin/kill            /bin/chmod
-/etc/passwd          /etc/group           /etc/hosts
-/etc/motd            /etc/fstab           /etc/profile
-/etc/bashrc          /etc/theme.css       /etc/kernel.conf
-/usr/lib/libvfs.js   /usr/lib/libkernel.js
-/usr/apps/terminal.bundle    /usr/apps/editor.bundle
-/usr/apps/code.bundle        /usr/apps/files.bundle
-/usr/apps/settings.bundle    /usr/apps/taskmgr.bundle
-/usr/apps/music.bundle       /usr/apps/video.bundle
-/usr/apps/gallery.bundle     /usr/apps/appstore.bundle
-/home/operator/Desktop/Welcome.md
-/home/operator/Desktop/Manifesto.txt
-/home/operator/Documents/Project.js
-/home/operator/Pictures/Wallpaper.png
-/home/operator/Music/Sample.mp3
-/home/operator/.bashrc       /home/operator/.profile
-/var/log/sys.log     /var/log/auth.log    /var/log/vfs.log
-/var/run/kernel.pid
-/dev/null            /dev/zero            /dev/random
-/dev/tty
-```
-
-**Total base nodes: 47**
-
----
-
-## ⚙️ Kernel Configuration Examples
-
-### `/etc/passwd`
-
-```
-# NovOS User Database
-# format: user:pass_hash:uid:gid:gecos:home:shell
-operator:$2a$12$K.lP...:0:0:System Operator:/home/operator:/bin/novash
-guest:*:100:100:Guest User:/home/guest:/bin/novash
-```
-
-### `/etc/motd`
-
-```
-Welcome to NovOS Professional Edition v1.3.0-PRO
-============================================
-* Kernel:      Stable 5.4.1-NOV
-* Nova Engine: Active (v2.4.1)
-* Disk Status: 42% Available
-* Session ID:  NOV-9928-XA
-
-Type 'help' for a list of available commands.
-```
-
-### `/home/operator/.bashrc`
-
-```bash
-# User Aliases
-alias ll='ls -al'
-alias la='ls -A'
-alias l='ls -CF'
-alias cls='clear'
-
-# Environment Variables
-export PATH=$PATH:/usr/local/bin
-export EDITOR=nova-editor
-```
-
----
-
-## 🔍 System Log Examples
-
-### Boot Log — `sys.log`
-
-```log
-[00:00:01] KERNEL: Initializing neural event bus...
-[00:00:01] KERNEL: Loading Aether Design Tokens into DOM...
-[00:00:02] VFS:    Probing IndexedDB backend (novos-vfs-db)...
-[00:00:02] VFS:    Mounting root partition (/).
-[00:00:03] VFS:    Found 428 file nodes. Integrity check: OK.
-[00:00:03] VFS:    Syncing /etc/passwd with userStore...
-[00:00:04] HAL:    Probing hardware capabilities...
-[00:00:04] HAL:    WebAudio: Enabled. WebGL: Enabled. BatteryAPI: Ready.
-[00:00:05] AUTH:   Identity Manager ready. MIRROR_MODE enabled.
-[00:00:06] SHELL:  Loading .bashrc into novash instance...
-[00:00:07] APP:    Verified system bundle: terminal.bundle
-[00:00:07] APP:    Verified system bundle: code.bundle
-[00:00:08] UI:     Aether Design Engine warmed up (32ms).
-[00:00:09] NET:    Establishing heartbeat with Nova neural engine...
-[00:00:10] SYSTEM: Phase transition [BOOT -> LOGIN].
-[00:00:10] KERNEL: Boot sequence complete. Uptime: 10.4s.
-```
-
-### Authentication Log — `auth.log`
-
-```log
-[00:00:01.270] [AUTH] Starting Identity Daemon (identityd)...
-[00:00:01.285] [AUTH] Loading secure credentials store...
-[00:00:01.285] [AUTH] Authenticating session rehydration request...
-[00:00:01.285] [AUTH] Rehydration Success: User 'Operator' (UID: 0).
-```
 
 ---
 
@@ -969,3 +763,8 @@ NovOS is open-source software released under the **MIT License**.
 **NovOS v1.3.0-PRO "Aether" · Released April 2026 · Built with 🌌 by Tcode-Motion**
 
 </div>
+
+---
+## 👤 Author & License
+* **Author:** [Tcode-Motion](https://github.com/Tcode-Motion)
+* **License:** Distributed under the MIT License. See `LICENSE` for details.
